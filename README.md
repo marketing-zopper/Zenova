@@ -4,7 +4,7 @@ Marketing landing page for **Zenova** (by Zopper) — an agentic AI platform for
 
 ## Stack
 
-React 19 + Vite, plain CSS (no framework), no TypeScript.
+React 19 + Vite
 
 ## Getting started
 

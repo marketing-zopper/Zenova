@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 44px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid var(--hairline);
   padding-bottom: 4px;
 }
 .hiw-tab {
@@ -25,9 +25,9 @@
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
-.hiw-tab.active { color: var(--white); }
+.hiw-tab.active { color: var(--text-body); }
 .hiw-tab.active::after { transform: scaleX(1); }
-.hiw-tab:hover { color: var(--off-white); }
+.hiw-tab:hover { color: var(--text-body); }
 
 .hiw-panel {
   margin-top: 36px;
@@ -47,8 +47,9 @@
 .hiw-copy-title {
   font-family: var(--font-display);
   font-size: clamp(24px, 3vw, 32px);
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 .hiw-copy-desc {
   margin-top: 14px;

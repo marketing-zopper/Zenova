@@ -61,3 +61,9 @@ export const IconPlay = (p) => (
 export const IconWave = (p) => (
   <svg {...base} {...p}><path d="M3 12h1M6.5 8.5v7M10 5.5v13M13.5 8.5v7M17 5.5v13M20.5 8.5v7M23 12h1" /></svg>
 );
+export const IconSun = (p) => (
+  <svg {...base} {...p}><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.6M12 18.9v2.6M4.4 4.4l1.9 1.9M17.7 17.7l1.9 1.9M2.5 12h2.6M18.9 12h2.6M4.4 19.6l1.9-1.9M17.7 6.3l1.9-1.9" /></svg>
+);
+export const IconMoon = (p) => (
+  <svg {...base} {...p}><path d="M20 13.8A8.4 8.4 0 1 1 10.2 4a6.6 6.6 0 0 0 9.8 9.8Z" /></svg>
+);

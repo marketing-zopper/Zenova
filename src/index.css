@@ -11,12 +11,38 @@
   --panel: rgba(255, 255, 255, 0.055);
   --panel-border: rgba(255, 255, 255, 0.12);
   --panel-strong: rgba(255, 255, 255, 0.09);
+  --panel-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.6);
+
+  /* Theme-flippable tokens — dark values above/below are the default (and unchanged) look.
+     The light-mode block further down only overrides these; components that must always
+     stay dark (TopBar, Footer, and the "spotlight" panels: reg-card, demo-frame, booth-card)
+     deliberately do NOT use these, so they're untouched by the toggle. */
+  --bg-page: var(--navy);
+  --text-body: var(--white);
+  --hairline: rgba(255, 255, 255, 0.09);
+
+  /* Fixed (never flips) — for text that sits directly on the always-dark spotlight panels */
+  --text-dim-inverse: rgba(238, 240, 250, 0.68);
+  --text-dimmer-inverse: rgba(238, 240, 250, 0.48);
 
   --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Archivo', 'Poppins', -apple-system, sans-serif;
 
   --container: 1240px;
   --section-pad: clamp(56px, 8vw, 112px);
+}
+
+/* Light mode — toggled via a `data-theme="light"` attribute on <html>. Dark stays the default. */
+[data-theme='light'] {
+  --bg-page: #FAFAFB;
+  --text-body: var(--navy);
+  --text-dim: rgba(29, 30, 63, 0.62);
+  --text-dimmer: rgba(29, 30, 63, 0.42);
+  --hairline: rgba(29, 30, 63, 0.09);
+  --panel: #FFFFFF;
+  --panel-border: rgba(29, 30, 63, 0.08);
+  --panel-strong: #FFFFFF;
+  --panel-shadow: 0 20px 45px -24px rgba(29, 30, 63, 0.22);
 }
 
 * { box-sizing: border-box; }
@@ -24,10 +50,11 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--navy);
-  color: var(--white);
+  background: var(--bg-page);
+  color: var(--text-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background 0.35s ease, color 0.35s ease;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -72,11 +99,11 @@ h1, h2, h3, h4, p { margin: 0; }
 
 .section-heading {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.08;
+  font-weight: 800;
+  line-height: 1.02;
   font-size: clamp(30px, 4.2vw, 52px);
-  letter-spacing: -0.01em;
-  color: var(--white);
+  letter-spacing: -0.02em;
+  color: var(--text-body);
 }
 
 .section-sub {
@@ -87,7 +114,10 @@ h1, h2, h3, h4, p { margin: 0; }
   margin-top: 16px;
 }
 
-.accent { color: var(--orange); }
+.accent {
+  color: var(--orange);
+  font-style: italic;
+}
 .accent-cyan { color: var(--cyan); }
 
 /* Buttons */
@@ -101,7 +131,7 @@ h1, h2, h3, h4, p { margin: 0; }
   font-weight: 600;
   font-size: 15px;
   border: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
   white-space: nowrap;
 }
 .btn-primary {
@@ -123,6 +153,14 @@ h1, h2, h3, h4, p { margin: 0; }
   color: var(--cyan);
   transform: translateY(-2px);
 }
+[data-theme='light'] .hero .btn-ghost {
+  color: var(--navy);
+  border-color: rgba(29, 30, 63, 0.24);
+}
+[data-theme='light'] .hero .btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
 .btn-arrow { transition: transform 0.25s ease; }
 .btn:hover .btn-arrow { transform: translateX(3px); }
 
@@ -141,7 +179,9 @@ h1, h2, h3, h4, p { margin: 0; }
 .reveal-delay-3 { transition-delay: 0.24s; }
 .reveal-delay-4 { transition-delay: 0.32s; }
 
-/* Panels / cards */
+/* Panels / cards — translucent glass in dark mode (as before), solid white with a soft
+   shadow in light mode. Theme-aware by design, so this also looks right for the white
+   pills used inside the always-dark spotlight panels (e.g. RegulatoryPanel's build list). */
 .panel {
   background: var(--panel);
   border: 1px solid var(--panel-border);
@@ -154,7 +194,7 @@ h1, h2, h3, h4, p { margin: 0; }
   border-color: rgba(0, 181, 234, 0.45);
   background: var(--panel-strong);
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--panel-shadow);
 }
 
 /* Background dot grid texture */
@@ -165,6 +205,9 @@ h1, h2, h3, h4, p { margin: 0; }
   background-size: 26px 26px;
   pointer-events: none;
 }
+[data-theme='light'] .dot-grid {
+  background-image: radial-gradient(rgba(29, 30, 63, 0.08) 1px, transparent 1px);
+}
 
 .gradient-navy {
   background: radial-gradient(ellipse 120% 80% at 20% -10%, rgba(38, 62, 145, 0.85), transparent 55%),
@@ -174,11 +217,19 @@ h1, h2, h3, h4, p { margin: 0; }
 .gradient-blue {
   background: linear-gradient(155deg, var(--blue) 0%, var(--navy) 65%);
 }
+[data-theme='light'] .gradient-navy {
+  background: radial-gradient(ellipse 120% 80% at 20% -10%, rgba(38, 62, 145, 0.1), transparent 55%),
+              radial-gradient(ellipse 90% 70% at 100% 0%, rgba(0, 181, 234, 0.1), transparent 50%),
+              var(--bg-page);
+}
+[data-theme='light'] .gradient-blue {
+  background: linear-gradient(155deg, rgba(38, 62, 145, 0.06) 0%, transparent 65%), var(--bg-page);
+}
 
 .divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  background: linear-gradient(90deg, transparent, var(--hairline), transparent);
 }
 
 .pill-badge {
@@ -199,6 +250,12 @@ h1, h2, h3, h4, p { margin: 0; }
   border-radius: 50%;
   background: var(--cyan);
   box-shadow: 0 0 8px 1px var(--cyan);
+}
+/* Scoped (not global) — TopBar keeps its always-dark pill-badge in both themes; only the
+   one floating in the (theme-flipping) Hero section needs a light-mode look. */
+[data-theme='light'] .hero .pill-badge {
+  border-color: rgba(29, 30, 63, 0.16);
+  background: rgba(29, 30, 63, 0.04);
 }
 
 ::selection { background: var(--orange); color: white; }

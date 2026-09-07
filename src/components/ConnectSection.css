@@ -14,7 +14,6 @@
   font-size: 14.5px;
   color: var(--text-dim);
 }
-.arch-row.systems { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
 .arch-row.zenova {
   background: linear-gradient(135deg, var(--orange), #c9532a);
   color: white;
@@ -24,7 +23,6 @@
   max-width: 320px;
   box-shadow: 0 20px 40px -18px rgba(237,118,59,0.55);
 }
-.arch-row.endpoints { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
 .arch-arrow { color: var(--cyan); font-size: 20px; }
 
 .badge-row-wrap {
@@ -43,8 +41,8 @@
   pointer-events: none;
   z-index: 2;
 }
-.badge-row-wrap::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
-.badge-row-wrap::after { right: 0; background: linear-gradient(-90deg, var(--navy), transparent); }
+.badge-row-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg-page), transparent); }
+.badge-row-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg-page), transparent); }
 
 .badge-row {
   display: flex;
@@ -79,6 +77,11 @@
   cursor: default;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
+[data-theme='light'] .tech-badge {
+  border-color: var(--panel-border);
+  background: #fff;
+  box-shadow: 0 12px 28px -18px rgba(29, 30, 63, 0.2);
+}
 @media (max-width: 900px) {
   .tech-badge { font-size: 12px; padding: 9px 15px 9px 10px; gap: 8px; }
   .tech-badge-icon { width: 23px; height: 23px; }
@@ -95,7 +98,7 @@
   transition: background 0.25s ease, color 0.25s ease, transform 0.3s ease;
 }
 .tech-badge:hover {
-  color: var(--white);
+  color: var(--text-body);
   border-color: rgba(0, 181, 234, 0.5);
   background: rgba(0, 181, 234, 0.1);
   transform: translateY(-3px);

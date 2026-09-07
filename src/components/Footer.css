@@ -17,5 +17,6 @@
 }
 .footer-legal {
   font-size: 12.5px;
-  color: var(--text-dimmer);
+  /* Footer stays permanently dark chrome in both themes — fixed color, not theme-flipping. */
+  color: var(--text-dimmer-inverse);
 }

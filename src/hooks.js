@@ -48,3 +48,34 @@ export function useCountUp(end, duration = 1600) {
 
   return [ref, value, visible];
 }
+
+const THEME_KEY = 'zenova-theme';
+
+// Dark is the default/primary theme; light is opt-in and remembered across visits.
+export function useTheme() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'dark';
+    try {
+      return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
+    } catch {
+      return 'dark';
+    }
+  });
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      /* private browsing / storage disabled — theme just won't persist */
+    }
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+
+  return [theme, toggleTheme];
+}

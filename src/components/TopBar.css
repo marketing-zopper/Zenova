@@ -34,19 +34,19 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: var(--text-dimmer);
+  color: var(--text-dimmer-inverse);
   padding-left: 14px;
   border-left: 1px solid rgba(255, 255, 255, 0.15);
   white-space: nowrap;
 }
-.powered-by b { color: var(--text-dim); font-weight: 600; }
+.powered-by b { color: var(--text-dim-inverse); font-weight: 600; }
 @media (min-width: 560px) {
   .powered-by { display: flex; }
 }
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex: none;
 }
 .gff-badge {
@@ -54,6 +54,27 @@
 }
 @media (min-width: 760px) {
   .gff-badge { display: inline-flex; }
+}
+
+/* TopBar stays permanently dark chrome in both themes, so this uses fixed colors,
+   not the theme-flipping tokens. */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-dim-inverse);
+  flex: none;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.theme-toggle:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
 }
 .topbar-cta {
   padding: 10px 18px;

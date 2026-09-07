@@ -21,9 +21,10 @@
 
 .final-cta-title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
   font-size: clamp(34px, 6vw, 60px);
-  line-height: 1.05;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 .final-cta-actions {
   margin-top: 32px;
@@ -51,6 +52,11 @@
 }
 
 .booth-card {
+  /* Always-dark spotlight panel in both themes — fixed text color, not theme-flipping.
+     The dark-mode background below is unchanged (a translucent tint on the dark page);
+     light mode gets its own opaque dark fill further down, since that tint alone would be
+     invisible once the page itself can go light. */
+  color: var(--white);
   margin: 52px auto 0;
   max-width: 640px;
   display: flex;
@@ -62,6 +68,10 @@
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 20px;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+[data-theme='light'] .booth-card {
+  background: linear-gradient(160deg, var(--blue) 0%, var(--navy) 100%);
+  box-shadow: 0 30px 60px -30px rgba(29, 30, 63, 0.35);
 }
 .booth-card:hover {
   transform: translateY(-4px);
@@ -121,7 +131,7 @@
   50% { opacity: 0.35; }
 }
 .booth-copy-title { font-weight: 600; font-size: 16px; }
-.booth-copy-desc { margin-top: 6px; font-size: 13.5px; color: var(--text-dim); line-height: 1.55; }
+.booth-copy-desc { margin-top: 6px; font-size: 13.5px; color: var(--text-dim-inverse); line-height: 1.55; }
 .booth-partner {
   margin-top: 12px;
   display: inline-flex;
@@ -131,7 +141,7 @@
   padding: 5px 14px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.18);
-  color: var(--text-dimmer);
+  color: var(--text-dimmer-inverse);
 }
 
 @media (max-width: 560px) {

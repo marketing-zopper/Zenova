@@ -16,9 +16,18 @@
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.1);
 }
+[data-theme='light'] .ba-without {
+  background: #F1F2F7;
+  border-color: var(--panel-border);
+  box-shadow: 0 16px 36px -24px rgba(29, 30, 63, 0.16);
+}
 .ba-with {
   background: linear-gradient(160deg, rgba(0,181,234,0.14), rgba(237,118,59,0.08));
   border: 1px solid rgba(0,181,234,0.35);
+}
+[data-theme='light'] .ba-with {
+  background: linear-gradient(160deg, rgba(0,181,234,0.1), rgba(237,118,59,0.06));
+  box-shadow: 0 16px 36px -22px rgba(0, 181, 234, 0.22);
 }
 .ba-label {
   font-size: 12.5px;
@@ -37,7 +46,7 @@
   font-size: 15px;
 }
 .ba-without .ba-list li { color: var(--text-dim); }
-.ba-with .ba-list li { color: var(--white); font-weight: 500; }
+.ba-with .ba-list li { color: var(--text-body); font-weight: 500; }
 .ba-icon {
   flex: none;
   width: 22px; height: 22px;
@@ -46,8 +55,10 @@
   font-size: 13px;
 }
 .ba-without .ba-icon { background: rgba(255,255,255,0.08); color: var(--text-dimmer); }
+[data-theme='light'] .ba-without .ba-icon { background: rgba(29, 30, 63, 0.08); }
 .ba-with .ba-icon { background: rgba(0,181,234,0.25); color: var(--cyan); }
 .ba-vs {
+  /* Fixed dark badge in both themes, so its label uses a fixed color, not the flipping token. */
   position: absolute;
   left: 50%;
   top: 50%;
@@ -61,7 +72,7 @@
   justify-content: center;
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-dimmer);
+  color: var(--text-dimmer-inverse);
   z-index: 2;
 }
 @media (min-width: 780px) {

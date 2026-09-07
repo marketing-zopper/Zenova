@@ -1,5 +1,5 @@
 .why-section {
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid var(--hairline);
 }
 .why-head {
   max-width: 760px;
@@ -40,6 +40,6 @@
 .capability-card p {
   font-size: 15px;
   font-weight: 500;
-  color: var(--off-white);
+  color: var(--text-body);
   line-height: 1.4;
 }

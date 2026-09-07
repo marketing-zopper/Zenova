@@ -1,0 +1,104 @@
+.governance-section {
+  position: relative;
+  overflow: hidden;
+}
+.governance-intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.pillar-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 860px) {
+  .pillar-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.pillar-card {
+  --pillar-accent: var(--cyan);
+  padding: 30px 26px 32px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pillar-accent), transparent 130%);
+}
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  right: -90px;
+  bottom: -110px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--pillar-accent) 22%, transparent), transparent 70%);
+  z-index: -1;
+  transition: opacity 0.35s ease;
+  opacity: 0.7;
+}
+.pillar-card:hover {
+  border-color: color-mix(in srgb, var(--pillar-accent) 55%, transparent);
+  box-shadow: 0 20px 46px -22px color-mix(in srgb, var(--pillar-accent) 55%, transparent);
+}
+.pillar-card:hover::after { opacity: 1; }
+
+.pillar-card.pillar-accent-cyan { --pillar-accent: var(--cyan); }
+.pillar-card.pillar-accent-orange { --pillar-accent: var(--orange); }
+.pillar-card.pillar-accent-white { --pillar-accent: #ffffff; }
+
+.pillar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.pillar-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--pillar-accent) 18%, transparent);
+  color: var(--pillar-accent);
+  transition: transform 0.3s ease;
+}
+.pillar-card:hover .pillar-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+.pillar-index {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.02em;
+}
+.pillar-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--pillar-accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pillar-question {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.pillar-desc {
+  font-size: 14.5px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}

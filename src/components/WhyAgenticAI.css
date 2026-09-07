@@ -1,0 +1,45 @@
+.why-section {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.why-head {
+  max-width: 760px;
+}
+.capability-row {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .capability-row { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1080px) {
+  .capability-row { grid-template-columns: repeat(5, 1fr); }
+}
+.capability-card {
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.capability-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--text-dimmer);
+}
+.capability-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 181, 234, 0.12);
+  color: var(--cyan);
+}
+.capability-card p {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--off-white);
+  line-height: 1.4;
+}

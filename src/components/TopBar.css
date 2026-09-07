@@ -1,0 +1,66 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(13, 14, 36, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.zenova-mark {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+@media (min-width: 480px) {
+  .zenova-mark { height: 21px; }
+}
+.powered-by {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-dimmer);
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+.powered-by b { color: var(--text-dim); font-weight: 600; }
+@media (min-width: 560px) {
+  .powered-by { display: flex; }
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+}
+.gff-badge {
+  display: none;
+}
+@media (min-width: 760px) {
+  .gff-badge { display: inline-flex; }
+}
+.topbar-cta {
+  padding: 10px 18px;
+  font-size: 13px;
+  flex: none;
+  white-space: nowrap;
+}
+@media (min-width: 480px) {
+  .topbar-cta { padding: 10px 20px; font-size: 13.5px; }
+}

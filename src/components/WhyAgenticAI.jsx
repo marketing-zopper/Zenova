@@ -2,6 +2,8 @@ import Reveal from './Reveal.jsx';
 import { IconSearch, IconGavel, IconShield, IconStamp } from './icons.jsx';
 import './WhyAgenticAI.css';
 
+const ACCENTS = ['cyan', 'orange', 'cyan', 'orange', 'cyan'];
+
 const CAPABILITIES = [
   { label: 'Understand context', Icon: IconSearch },
   { label: 'Make decisions', Icon: IconGavel },
@@ -35,15 +37,23 @@ export default function WhyAgenticAI() {
             </p>
           </Reveal>
         </div>
-        <div className="capability-row">
+
+        {/* Revamped: was a grid of identical cards; now a connected flow that reads as a
+            single sequence, with a track line that draws in on scroll and per-node accent. */}
+        <Reveal className="capability-flow">
           {CAPABILITIES.map(({ label, Icon }, i) => (
-            <Reveal key={label} delay={Math.min(i + 1, 4)} className="panel capability-card">
-              <span className="capability-num">{String(i + 1).padStart(2, '0')}</span>
-              <span className="capability-icon"><Icon /></span>
-              <p>{label}</p>
+            <Reveal
+              key={label}
+              delay={Math.min(i + 1, 4)}
+              className="capability-node"
+              style={{ '--node-accent': `var(--${ACCENTS[i]})` }}
+            >
+              <span className="capability-node-num">{String(i + 1).padStart(2, '0')}</span>
+              <span className="capability-node-icon"><Icon width={20} height={20} /></span>
+              <p className="capability-node-label">{label}</p>
             </Reveal>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -4,42 +4,117 @@
 .why-head {
   max-width: 760px;
 }
-.capability-row {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+
+/* Connected flow — a horizontal track line runs behind the nodes and draws in on scroll;
+   each node lifts, glows in its accent color, and its label brightens on hover. */
+.capability-flow {
+  position: relative;
+  margin-top: 56px;
+  padding-top: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
-@media (min-width: 720px) {
-  .capability-row { grid-template-columns: repeat(3, 1fr); }
+.capability-flow::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 4%;
+  right: 4%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--orange), var(--cyan), var(--orange));
+  opacity: 0.22;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
 }
-@media (min-width: 1080px) {
-  .capability-row { grid-template-columns: repeat(5, 1fr); }
+.capability-flow.is-visible::before {
+  transform: scaleX(1);
 }
-.capability-card {
-  padding: 26px 20px;
+
+.capability-node {
+  --node-accent: var(--cyan);
+  position: relative;
+  z-index: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 10px 0 0;
 }
-.capability-num {
+.capability-node-num {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--text-dimmer);
+  letter-spacing: 0.04em;
 }
-.capability-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+.capability-node-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 181, 234, 0.12);
-  color: var(--cyan);
+  color: var(--node-accent);
+  background:
+    linear-gradient(color-mix(in srgb, var(--node-accent) 14%, transparent), color-mix(in srgb, var(--node-accent) 14%, transparent)),
+    var(--bg-page);
+  border: 1px solid color-mix(in srgb, var(--node-accent) 30%, transparent);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1.4), box-shadow 0.35s ease, border-color 0.35s ease;
 }
-.capability-card p {
-  font-size: 15px;
-  font-weight: 500;
+.capability-node-label {
+  font-size: 14.5px;
+  font-weight: 600;
   color: var(--text-body);
-  line-height: 1.4;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.capability-node:hover .capability-node-icon {
+  transform: translateY(-4px) scale(1.08);
+  border-color: var(--node-accent);
+  box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--node-accent) 60%, transparent);
+}
+.capability-node:hover .capability-node-label {
+  color: var(--node-accent);
+}
+
+@media (max-width: 860px) {
+  .capability-flow {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .capability-flow::before {
+    top: 8px;
+    bottom: 8px;
+    left: 25px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--cyan), var(--orange), var(--cyan), var(--orange));
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+  .capability-flow.is-visible::before {
+    transform: scaleY(1);
+  }
+  .capability-node {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+  }
+  .capability-node-num {
+    position: absolute;
+    top: -18px;
+    left: 66px;
+  }
+  .capability-node-icon {
+    flex: none;
+    width: 52px;
+    height: 52px;
+  }
 }
